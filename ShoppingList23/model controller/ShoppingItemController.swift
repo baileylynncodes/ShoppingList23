@@ -10,9 +10,11 @@ import Foundation
 import CoreData
 
 class ShoppingItemController {
-    //shared instance (private init)
+    
+    //MARK: - shared instance (private init)
     static let sharedInstance = ShoppingItemController(); private init(){}
-    //CRUD
+    
+    //MARK: - CRUD functions
     func createItem(with name: String){
         ShoppingItem(name: name)
         saveToPersistance()
@@ -23,6 +25,7 @@ class ShoppingItemController {
         saveToPersistance()
     }
     
+    //MARK: - toggle function
     func toggle(item: ShoppingItem){
         if item.isChecked == false{
             item.isChecked = true
@@ -32,7 +35,7 @@ class ShoppingItemController {
         saveToPersistance()
     }
     
-    //save to persistance
+    //MARK: - save to persistance
     func saveToPersistance(){
         do {
             try CoreDataStack.context.save()

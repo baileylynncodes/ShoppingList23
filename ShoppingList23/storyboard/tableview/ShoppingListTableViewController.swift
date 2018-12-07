@@ -18,6 +18,7 @@ class ShoppingListTableViewController: UITableViewController, CheckBoxTableViewC
         }
     }
     
+    //MARK: - fetch results controller
     let fetchResultsController: NSFetchedResultsController<ShoppingItem> = {
         let request: NSFetchRequest<ShoppingItem> = ShoppingItem.fetchRequest()
         let itemDescriptor = NSSortDescriptor(key: "name", ascending: true)
@@ -26,7 +27,8 @@ class ShoppingListTableViewController: UITableViewController, CheckBoxTableViewC
         
         return NSFetchedResultsController(fetchRequest: request, managedObjectContext: CoreDataStack.context, sectionNameKeyPath: nil, cacheName: nil)
     }()
-
+    
+    //MARK: - view did load
     override func viewDidLoad() {
         super.viewDidLoad()
         do {
@@ -37,51 +39,36 @@ class ShoppingListTableViewController: UITableViewController, CheckBoxTableViewC
         fetchResultsController.delegate = self
     }
     
+    //MARK: - actions
     @IBAction func addItemButtonTapped(_ sender: Any) {
         showAlertController()
     }
     
-
-    // MARK: - Table view data source
-
+    // MARK: - table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return fetchResultsController.fetchedObjects?.count ?? 0
     }
-
     
+    //MARK: - configuring the cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingCell", for: indexPath) as! ShoppingListTableViewCell
         
         cell.delegate = self
-        
         let item = fetchResultsController.object(at: indexPath)
-        
         cell.item = item
-
         return cell
     }
-
-    // Override to support editing the table view.
+    
+    //MARK: - swipe to delete
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let item = fetchResultsController.object(at: indexPath)
             ShoppingItemController.sharedInstance.deleteItem(item: item)
         }    
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
+//MARK: - conforming to fetched results delegate
 extension ShoppingListTableViewController: NSFetchedResultsControllerDelegate {
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         switch type {
@@ -102,6 +89,7 @@ extension ShoppingListTableViewController: NSFetchedResultsControllerDelegate {
     }
 }
 
+//MARK: - alert controller
 extension ShoppingListTableViewController {
     func showAlertController(){
         let alertController = UIAlertController(title: "Remembered an item you needed?", message: nil, preferredStyle: .alert)
@@ -119,6 +107,4 @@ extension ShoppingListTableViewController {
         alertController.addAction(addAction)
         present(alertController, animated: true)
     }
-    
 }
-

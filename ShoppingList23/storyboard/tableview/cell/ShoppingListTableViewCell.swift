@@ -10,33 +10,33 @@ import UIKit
 
 class ShoppingListTableViewCell: UITableViewCell {
     
+    //MARK: - source of truth
     var item : ShoppingItem? {
         didSet{
             updateViews()
         }
     }
-    
-    weak var delegate: CheckBoxTableViewCellButtonDelegate?
 
+    weak var delegate: CheckBoxTableViewCellButtonDelegate?
+    
+    //MARK: - outlets
     @IBOutlet weak var shoppingItemNameLabel: UILabel!
     @IBOutlet weak var shoppingItemCheckBoxButton: UIButton!
     
+    //MARK: - actions
     @IBAction func checkBoxTapped(_ sender: Any) {
         delegate?.cellButtonTapped(self)
     }
     
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
+    override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+    }
+    
+    //MARK: - toggle button function
     func toggleCell(with item: ShoppingItem){
         if item.isChecked{
             shoppingItemCheckBoxButton.setImage(UIImage(named: "complete"), for: .normal)
@@ -45,6 +45,7 @@ class ShoppingListTableViewCell: UITableViewCell {
         }
     }
     
+    //MARK: - update views button
     func updateViews(){
         if let item = item {
             shoppingItemNameLabel.text = item.name
@@ -55,9 +56,9 @@ class ShoppingListTableViewCell: UITableViewCell {
             }
         }
     }
-
 }
 
+//MARK: - declaring the delegate
 protocol CheckBoxTableViewCellButtonDelegate: class {
     func cellButtonTapped(_ cell: ShoppingListTableViewCell)
 }

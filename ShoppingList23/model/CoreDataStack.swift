@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 enum CoreDataStack {
+    
     static let container: NSPersistentContainer = {
         let appName = Bundle.main.object(forInfoDictionaryKey: (kCFBundleNameKey as String)) as! String
         let container = NSPersistentContainer(name: appName)
