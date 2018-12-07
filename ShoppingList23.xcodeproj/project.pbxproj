@@ -53,12 +53,29 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
-		F724A46921BADA430007C5A0 = {
+		F7019DF421BAFCA100603363 /* resources */ = {
+			isa = PBXGroup;
+			children = (
+				F724A47521BADA430007C5A0 /* AppDelegate.swift */,
+				F724A47C21BADA440007C5A0 /* Assets.xcassets */,
+				F724A47E21BADA440007C5A0 /* LaunchScreen.storyboard */,
+				F724A48121BADA440007C5A0 /* Info.plist */,
+			);
+			path = resources;
+			sourceTree = "<group>";
+		};
+		F7019DF521BAFCFE00603363 /* storyboard */ = {
 			isa = PBXGroup;
 			children = (
 				F724A48921BADA6B0007C5A0 /* tableview */,
-				F724A48821BADA620007C5A0 /* model controller */,
-				F724A48721BADA540007C5A0 /* model */,
+				F724A47921BADA430007C5A0 /* Main.storyboard */,
+			);
+			path = storyboard;
+			sourceTree = "<group>";
+		};
+		F724A46921BADA430007C5A0 = {
+			isa = PBXGroup;
+			children = (
 				F724A47421BADA430007C5A0 /* ShoppingList23 */,
 				F724A47321BADA430007C5A0 /* Products */,
 			);
@@ -75,11 +92,10 @@
 		F724A47421BADA430007C5A0 /* ShoppingList23 */ = {
 			isa = PBXGroup;
 			children = (
-				F724A47521BADA430007C5A0 /* AppDelegate.swift */,
-				F724A47921BADA430007C5A0 /* Main.storyboard */,
-				F724A47C21BADA440007C5A0 /* Assets.xcassets */,
-				F724A47E21BADA440007C5A0 /* LaunchScreen.storyboard */,
-				F724A48121BADA440007C5A0 /* Info.plist */,
+				F7019DF521BAFCFE00603363 /* storyboard */,
+				F724A48821BADA620007C5A0 /* model controller */,
+				F724A48721BADA540007C5A0 /* model */,
+				F7019DF421BAFCA100603363 /* resources */,
 			);
 			path = ShoppingList23;
 			sourceTree = "<group>";
@@ -336,7 +352,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XHS9MLH4Q;
-				INFOPLIST_FILE = ShoppingList23/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -354,7 +370,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6XHS9MLH4Q;
-				INFOPLIST_FILE = ShoppingList23/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -51,7 +51,7 @@ class ShoppingListTableViewController: UITableViewController, CheckBoxTableViewC
     
     //MARK: - configuring the cell
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingCell", for: indexPath) as! ShoppingListTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "shoppingCell", for: indexPath) as! ShoppingListTableViewCell //no point in displaying a cell at all if the custom one doesnt work
         
         cell.delegate = self
         let item = fetchResultsController.object(at: indexPath)
